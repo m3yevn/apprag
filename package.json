@@ -43,6 +43,9 @@
   },
   "lint-staged": {
     "*.ts": "eslint --fix",
+    "*.{ts,js,json,md,scss,html}": [
+      "prettier --write"
+    ],
     "allow-empty": "true"
   }
 }
