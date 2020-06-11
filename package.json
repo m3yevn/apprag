@@ -46,6 +46,6 @@
     "*.{ts,js,json,md}": [
       "prettier --write"
     ],
-    "allow-empty": "true"
+    "allowEmpty": "true"
   }
 }
