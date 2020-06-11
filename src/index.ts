@@ -1,5 +1,9 @@
+import { Options } from "./constants/options";
+
 export function Main() {
-  console.log("Hi");
-  console.log("qqqq");
-  console.log("111");
+  const options = process.argv[2];
+  switch (options) {
+    case Options.init:
+      break;
+  }
 }
