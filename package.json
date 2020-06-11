@@ -31,6 +31,6 @@
     "typescript": "^3.9.5"
   },
   "lint-staged": {
-    "es-lint": "./src/*.ts"
+    "./src/*.ts": "es-line"
   }
 }
