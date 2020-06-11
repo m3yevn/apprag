@@ -43,10 +43,11 @@
   },
   "lint-staged": {
     "*.ts": [
-      "eslint --fix",
-      "git add"
+      "git add",
+      "eslint --fix"
     ],
     "*.{ts,js,json,md}": [
+      "git add",
       "prettier --write"
     ],
     "allowEmpty": "true"
