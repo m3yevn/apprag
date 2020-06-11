@@ -42,6 +42,7 @@
     }
   },
   "lint-staged": {
-    "*.ts": "eslint --fix"
+    "*.ts": "eslint --fix",
+    "allow-empty": "true"
   }
 }
