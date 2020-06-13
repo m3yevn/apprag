@@ -1,1 +1,3 @@
-export const DefaultOption = () => {};
+export const DefaultOption = () => {
+  console.log("Hi");
+};
