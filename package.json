@@ -1,13 +1,13 @@
 {
-  "name": "aprag",
+  "name": "apprag",
   "version": "1.0.0",
-  "description": "APRAG - A Project README auto-generator",
-  "main": "index.js",
+  "description": "APPRAG - A Professional Project Readme Auto-Generator",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "aprag": "./bin/aprag"
+    "aprag": "./bin/apprag"
   },
   "repository": {
     "type": "git",
@@ -45,7 +45,7 @@
     "*.ts": [
       "eslint --fix"
     ],
-    "*.{ts,js,json,md}": [
+    "*.{ts,js,json,md,html,css,scss}": [
       "prettier --write"
     ],
     "allowEmpty": "true"
