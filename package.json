@@ -7,11 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "aprag": "./bin/apprag"
+    "apprag": "./bin/apprag"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/m3yevn/aprag.git"
+    "url": "git+https://github.com/m3yevn/apprag.git"
   },
   "keywords": [
     "readme",
@@ -21,9 +21,9 @@
   "author": "m3yevn",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/m3yevn/aprag/issues"
+    "url": "https://github.com/m3yevn/apprag/issues"
   },
-  "homepage": "https://github.com/m3yevn/aprag#readme",
+  "homepage": "https://github.com/m3yevn/apprag#readme",
   "devDependencies": {
     "@types/node": "^14.0.13",
     "@typescript-eslint/eslint-plugin": "^3.2.0",
