@@ -151,13 +151,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DefaultOption = void 0;
 var SpawnService_1 = require("../services/SpawnService");
 var FileService_1 = require("../services/FileService");
+var fs_1 = require("fs");
 exports.DefaultOption = function () {
   return __awaiter(void 0, void 0, void 0, function () {
     var template, replacements, filledTemplate, ex_1;
     return __generator(this, function (_a) {
       switch (_a.label) {
         case 0:
-          _a.trys.push([0, 4, , 5]);
+          _a.trys.push([0, 5, , 6]);
           return [
             4 /*yield*/,
             SpawnService_1.spawnProcess("touch", [
@@ -172,7 +173,9 @@ exports.DefaultOption = function () {
           ];
         case 2:
           template = _a.sent();
-          replacements = getReplacements();
+          return [4 /*yield*/, getReplacements()];
+        case 3:
+          replacements = _a.sent();
           filledTemplate = FileService_1.fillTemplate(template, replacements);
           return [
             4 /*yield*/,
@@ -181,25 +184,142 @@ exports.DefaultOption = function () {
               filledTemplate
             ),
           ];
-        case 3:
-          _a.sent();
-          return [3 /*break*/, 5];
         case 4:
+          _a.sent();
+          return [3 /*break*/, 6];
+        case 5:
           ex_1 = _a.sent();
           console.error(ex_1);
-          return [3 /*break*/, 5];
-        case 5:
+          return [3 /*break*/, 6];
+        case 6:
           return [2 /*return*/];
       }
     });
   });
 };
 var getReplacements = function () {
-  var packageInfo = require("../../package.json");
-  return __assign(__assign({}, packageInfo), {
-    name: packageInfo.name.charAt(0).toUpperCase() + packageInfo.name.slice(1),
-    funFacts: renderList(packageInfo.funfacts, "#### {}"),
+  return __awaiter(void 0, void 0, void 0, function () {
+    var licenseFile, packageInfo, licenseExists;
+    return __generator(this, function (_a) {
+      switch (_a.label) {
+        case 0:
+          packageInfo = require("../../package.json");
+          licenseExists = fs_1.existsSync(process.cwd() + "/LICENSE");
+          if (!licenseExists) return [3 /*break*/, 2];
+          return [4 /*yield*/, getLicense()];
+        case 1:
+          licenseFile = _a.sent();
+          _a.label = 2;
+        case 2:
+          return [
+            2 /*return*/,
+            __assign(__assign({}, packageInfo), {
+              name: packageInfo.name
+                ? packageInfo.name.charAt(0).toUpperCase() +
+                  packageInfo.name.slice(1)
+                : "This project name",
+              funFacts: packageInfo.funFacts
+                ? renderList(packageInfo.funFacts, " - #### {}")
+                : "This project is awesome!",
+              badges: packageInfo.badges
+                ? renderList(packageInfo.badges, "{}")
+                : "This project is well tested!",
+              techStacks: packageInfo.techStacks
+                ? renderList(packageInfo.techStacks, " - {}")
+                : "This project is using awesome tech stacks!",
+              publicUrl:
+                packageInfo.publicUrl ||
+                "This project is not published to public!",
+              screenshots: packageInfo.screenshots
+                ? renderList(packageInfo.screenshots, ' - <img src="{}" />')
+                : "This project does not have screenshots available.",
+              scripts:
+                packageInfo.scripts &&
+                structureScripts(packageInfo.scripts).length
+                  ? renderList(structureScripts(packageInfo.scripts), "{}")
+                  : "This project does not have scripts to run.",
+              bugUrl:
+                packageInfo.bugs && packageInfo.bugs.url
+                  ? packageInfo.bugs.url
+                  : "Visit the repository to open bug reports and issues",
+              license: packageInfo.license
+                ? licenseExists
+                  ? licenseFile
+                  : packageInfo.license
+                : "This project does not have a license.",
+              dependencies:
+                packageInfo.dependencies &&
+                structureDependencies(packageInfo.dependencies).length
+                  ? renderList(
+                      structureScripts(packageInfo.dependencies),
+                      " - {}"
+                    )
+                  : "This project does not have dependencies",
+              devDependencies:
+                packageInfo.devDependencies &&
+                structureDependencies(packageInfo.devDependencies).length
+                  ? renderList(
+                      structureScripts(packageInfo.devDependencies),
+                      " - {}"
+                    )
+                  : "This project does not have dev dependencies",
+              animations: packageInfo.animations
+                ? renderList(packageInfo.animations, '<img src="{}"')
+                : '<img src="https://cdn.dribbble.com/users/2401141/screenshots/5487982/developers-gif-showcase.gif"/>',
+              footer: packageInfo.footer || "Happy Coding!",
+            }),
+          ];
+      }
+    });
   });
+};
+var getLicense = function () {
+  return __awaiter(void 0, void 0, void 0, function () {
+    var licenseFile, ex_2;
+    return __generator(this, function (_a) {
+      switch (_a.label) {
+        case 0:
+          _a.trys.push([0, 2, , 3]);
+          return [
+            4 /*yield*/,
+            FileService_1.readTemplate(process.cwd() + "/LICENSE"),
+          ];
+        case 1:
+          licenseFile = _a.sent();
+          return [2 /*return*/, licenseFile];
+        case 2:
+          ex_2 = _a.sent();
+          console.error(ex_2);
+          return [3 /*break*/, 3];
+        case 3:
+          return [2 /*return*/];
+      }
+    });
+  });
+};
+var structureDependencies = function (deps) {
+  var keys = Object.keys(deps);
+  var values = Object.values(deps);
+  var scriptString = [];
+  if (keys && values) {
+    for (var i = 0; i < values.length; i++) {
+      scriptString.push(keys[i] + " : " + values[i]);
+    }
+    return scriptString;
+  }
+  return [];
+};
+var structureScripts = function (scripts) {
+  var keys = Object.keys(scripts);
+  var values = Object.values(scripts);
+  var scriptString = [];
+  if (keys && values) {
+    for (var i = 0; i < values.length; i++) {
+      scriptString.push(keys[i] + " : $ " + values[i]);
+    }
+    return scriptString;
+  }
+  return [];
 };
 var renderList = function (loops, format) {
   var renderedString = "";

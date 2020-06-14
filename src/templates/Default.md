@@ -7,45 +7,47 @@
 
 {{funFacts}}
 
-{{badges}}
+{{{badges}}}
 
-### ⭐ Public Url
+## ⭐ Public Url
 
-{{pub}}
+{{publicUrl}}
 
-### 📚 Tech Stack
+## 📚 Tech Stack
 
-{{techStack}}
+{{techStacks}}
 
-### 📸 Screenshots
+## 📸 Screenshots
 
 {{screenshots}}
 
-### 📜 Scripts
+## 📜 Scripts
 
-{{scripts}}
+```sh
+{{{scripts}}}
+```
 
-### 🔑 Keywords
+## 🔑 Keywords
 
 {{keywords}}
 
-### 👾 Submit issues at
+## 👾 Submit issues at
 
 {{bugUrl}}
 
-### ©️ License
+## ©️ License
 
 {{license}}
 
-### Dependencies
+## Dependencies
 
 {{dependencies}}
 
-### Development Dependencies
+## Dev Dependencies
 
-{{devdependencies}}
+{{devDependencies}}
 
-{{animations}}
+{{{animations}}}
 
 <hr/>
 {{footer}}
