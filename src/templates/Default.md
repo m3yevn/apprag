@@ -1,7 +1,7 @@
 <div style="text-align:center">
 <h1>🔥{{name}}🔥</h1>
 <b>{{description}}</b>
-<p>{{version}}</p>
+<p>Version {{version}}</p>
 <small>by {{author}}</small>
 </div>
 

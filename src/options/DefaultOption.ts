@@ -15,5 +15,19 @@ export const DefaultOption = async () => {
 
 const getReplacements = () => {
   const packageInfo = require("../../package.json");
-  return packageInfo;
+  return {
+    ...packageInfo,
+    name:
+      (packageInfo.name as string).charAt(0).toUpperCase() +
+      (packageInfo.name as string).slice(1),
+    funFacts: renderList(packageInfo.funfacts as string[],"#### {}"),
+  };
+};
+
+const renderList = (loops: string[], format: string) => {
+  let renderedString: string = "";
+  for (const loop in loops) {
+    renderedString += format.replace("{}", loop) + "\r\n";
+  }
+  return renderedString;
 };
