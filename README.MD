@@ -1,14 +1,14 @@
-<div style="text-align:center">
+<div style="display:flex; flex-direction:column; justify-content:center;align-items:center;text-align:center">
 <h1>🔥Apprag🔥</h1>
 <b>Apprag - A Professional Project Readme Auto-Generator</b>
-<p>Version 1.0.0</p>
+<p>Version 1.0.2</p>
 <small>by m3yevn</small>
 </div>
 
- - #### ⚡ Instantly generate README for your project
- - #### ⚙️ Easily configure and customize Readme templates
- - #### 🦾 Automating your task to write beautiful Readme
- - #### 📦 Utilizing Nodejs package.json for project information
+ - **⚡ Instantly generate README for your project**
+ - **⚙️ Easily configure and customize Readme templates**
+ - **🦾 Automating your task to write beautiful Readme**
+ - **📦 Utilizing Nodejs package.json for project information**
 
 
 This project is well tested!
