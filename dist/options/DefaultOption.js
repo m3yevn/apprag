@@ -135,19 +135,41 @@ var __generator =
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DefaultOption = void 0;
 var SpawnService_1 = require("../services/SpawnService");
+var FileService_1 = require("../services/FileService");
 exports.DefaultOption = function () {
   return __awaiter(void 0, void 0, void 0, function () {
+    var template, replacements, filledTemplate, ex_1;
     return __generator(this, function (_a) {
       switch (_a.label) {
         case 0:
+          _a.trys.push([0, 3, , 4]);
           return [
             4 /*yield*/,
             SpawnService_1.spawnProcess("touch", ["README.md"]),
           ];
         case 1:
           _a.sent();
+          return [
+            4 /*yield*/,
+            FileService_1.readTemplate("src/templates/Default.md"),
+          ];
+        case 2:
+          template = _a.sent();
+          replacements = getReplacements();
+          filledTemplate = FileService_1.fillTemplate(template, replacements);
+          console.log(filledTemplate);
+          return [3 /*break*/, 4];
+        case 3:
+          ex_1 = _a.sent();
+          console.error(ex_1);
+          return [3 /*break*/, 4];
+        case 4:
           return [2 /*return*/];
       }
     });
   });
+};
+var getReplacements = function () {
+  var packageInfo = require("../../package.json");
+  return packageInfo;
 };

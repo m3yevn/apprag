@@ -5,9 +5,7 @@
 <small>by {{author}}</small>
 </div>
 
-#### {{funFacts1}}
-
-#### {{funFacts2}}
+{{funFacts}}
 
 {{badges}}
 
@@ -17,24 +15,19 @@
 
 ### 📚 Tech Stack
 
-- {{techStack1}}
-- {{techStack1}}
+{{techStack}}
 
 ### 📸 Screenshots
 
-- <img src="{{screenshots1}}" />
-- <img src="{{screenshots2}}" />
+{{screenshots}}
 
 ### 📜 Scripts
 
-```sh
-    $ npm install
-```
+{{scripts}}
 
 ### 🔑 Keywords
 
-- {{keyword1}}
-- {{keyword2}}
+{{keywords}}
 
 ### 👾 Submit issues at
 
@@ -46,13 +39,11 @@
 
 ### Dependencies
 
-- {{dependencies1}}
-- {{dependencies2}}
+{{dependencies}}
 
 ### Development Dependencies
 
-- {{devdependencies1}}
-- {{devdependencies2}}
+{{devdependencies}}
 
 {{animations}}
 
