@@ -51,5 +51,7 @@
     ],
     "allowEmpty": "true"
   },
-  "dependencies": {}
+  "dependencies": {
+    "handlebars": "^4.7.6"
+  }
 }

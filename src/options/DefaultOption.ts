@@ -1,3 +1,5 @@
-export const DefaultOption = () => {
-  console.log("Hi");
+import { spawnProcess } from "../services/SpawnService";
+
+export const DefaultOption = async () => {
+  await spawnProcess("touch",["README.md"]); 
 };
