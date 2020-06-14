@@ -1,20 +1,32 @@
-import fs from "fs";
 import handlebars from "handlebars";
+import { request } from "http";
+import { writeFile } from "fs";
 
 export const readTemplate = (path: string): Promise<string> => {
   return new Promise((resolve, reject) => {
-    fs.readFile(path, { encoding: "utf-8" }, (err, template) => {
-      if (err) {
-        return reject(err);
-      }
-      return resolve(template);
+    request(path, (result) => {
+      let data = "";
+
+      // A chunk of data has been recieved.
+      result.on("data", (chunk) => {
+        data += chunk;
+      });
+
+      // The whole response has been received. Print out the result.
+      result.on("end", () => {
+        resolve(data);
+      });
+
+      result.on("error", (err) => {
+        reject(err);
+      });
     });
   });
 };
 
 export const writeTemplate = (path: string, data: string): Promise<string> => {
   return new Promise((resolve, reject) => {
-    fs.writeFile(path, data, (err) => {
+    writeFile(path, data, (err) => {
       if (err) {
         return reject(err);
       }

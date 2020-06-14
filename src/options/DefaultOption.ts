@@ -9,7 +9,9 @@ import { existsSync } from "fs";
 export const DefaultOption = async () => {
   try {
     await spawnProcess("touch", [process.cwd() + "/README.md"]);
-    const template = await readTemplate("../templates/Default.md");
+    const template = await readTemplate(
+      "https://raw.githubusercontent.com/m3yevn/apprag/master/templates/Default.md"
+    );
     const replacements = await getReplacements();
     const filledTemplate = fillTemplate(template, replacements);
     await writeTemplate(process.cwd() + "/README.md", filledTemplate);
@@ -33,7 +35,7 @@ const getReplacements = async () => {
         (packageInfo.name as string).slice(1)
       : "This project name",
     funFacts: packageInfo.funFacts
-      ? renderList(packageInfo.funFacts as string[], " - **{}**")
+      ? renderList(packageInfo.funFacts as string[], " - {}")
       : "This project is awesome!",
     badges: packageInfo.badges
       ? renderList(packageInfo.badges as string[], "{}")

@@ -1,6 +1,6 @@
 {
   "name": "apprag",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Apprag - A Professional Project Readme Auto-Generator",
   "main": "dist/index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "build": "rm -rf dist && tsc",
     "publish": "npm run publish --access=public"
   },
-  "publicUrl": "https://npmsjs.com/package/apprag",
+  "publicUrl": "https://npmjs.com/package/apprag",
   "techStacks": [
     "NodeJs",
     "HandlebarJs",
