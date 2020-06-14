@@ -157,10 +157,12 @@ exports.DefaultOption = function () {
     return __generator(this, function (_a) {
       switch (_a.label) {
         case 0:
-          _a.trys.push([0, 3, , 4]);
+          _a.trys.push([0, 4, , 5]);
           return [
             4 /*yield*/,
-            SpawnService_1.spawnProcess("touch", ["README.md"]),
+            SpawnService_1.spawnProcess("touch", [
+              process.cwd() + "/README.md",
+            ]),
           ];
         case 1:
           _a.sent();
@@ -172,13 +174,21 @@ exports.DefaultOption = function () {
           template = _a.sent();
           replacements = getReplacements();
           filledTemplate = FileService_1.fillTemplate(template, replacements);
-          console.log(filledTemplate);
-          return [3 /*break*/, 4];
+          return [
+            4 /*yield*/,
+            FileService_1.writeTemplate(
+              process.cwd() + "/README.md",
+              filledTemplate
+            ),
+          ];
         case 3:
+          _a.sent();
+          return [3 /*break*/, 5];
+        case 4:
           ex_1 = _a.sent();
           console.error(ex_1);
-          return [3 /*break*/, 4];
-        case 4:
+          return [3 /*break*/, 5];
+        case 5:
           return [2 /*return*/];
       }
     });

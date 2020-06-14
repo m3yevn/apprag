@@ -1,13 +1,17 @@
 import { spawnProcess } from "../services/SpawnService";
-import { readTemplate, fillTemplate } from "../services/FileService";
+import {
+  readTemplate,
+  fillTemplate,
+  writeTemplate,
+} from "../services/FileService";
 
 export const DefaultOption = async () => {
   try {
-    await spawnProcess("touch", ["README.md"]);
+    await spawnProcess("touch", [process.cwd() + "/README.md"]);
     const template = await readTemplate("src/templates/Default.md");
     const replacements = getReplacements();
     const filledTemplate = fillTemplate(template, replacements);
-    console.log(filledTemplate);
+    await writeTemplate(process.cwd() + "/README.md", filledTemplate);
   } catch (ex) {
     console.error(ex);
   }
