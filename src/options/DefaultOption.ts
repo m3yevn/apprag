@@ -1,5 +1,5 @@
 import { spawnProcess } from "../services/SpawnService";
 
 export const DefaultOption = async () => {
-  await spawnProcess("touch",["README.md"]); 
+  await spawnProcess("touch", ["README.md"]);
 };
