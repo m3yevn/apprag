@@ -3,7 +3,7 @@ import {
   readTemplate,
   fillTemplate,
   writeTemplate,
-} from "../services/FileService";
+} from "../services/TemplateService";
 import { existsSync } from "fs";
 
 export const DefaultOption = async () => {
