@@ -193,7 +193,8 @@ var getReplacements = function () {
 };
 var renderList = function (loops, format) {
   var renderedString = "";
-  for (var loop in loops) {
+  for (var _i = 0, loops_1 = loops; _i < loops_1.length; _i++) {
+    var loop = loops_1[_i];
     renderedString += format.replace("{}", loop) + "\r\n";
   }
   return renderedString;

@@ -20,13 +20,13 @@ const getReplacements = () => {
     name:
       (packageInfo.name as string).charAt(0).toUpperCase() +
       (packageInfo.name as string).slice(1),
-    funFacts: renderList(packageInfo.funfacts as string[],"#### {}"),
+    funFacts: renderList(packageInfo.funfacts as string[], "#### {}"),
   };
 };
 
 const renderList = (loops: string[], format: string) => {
   let renderedString: string = "";
-  for (const loop in loops) {
+  for (const loop of loops) {
     renderedString += format.replace("{}", loop) + "\r\n";
   }
   return renderedString;
