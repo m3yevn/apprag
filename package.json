@@ -1,6 +1,6 @@
 {
   "name": "apprag",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "Apprag - A Professional Project Readme Auto-Generator",
   "main": "dist/index.js",
   "scripts": {
