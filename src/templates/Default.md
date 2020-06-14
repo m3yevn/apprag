@@ -1,4 +1,4 @@
-<div style="text-align:center">
+<div style="display:flex; flex-direction:column; justify-content:center;align-items:center;text-align:center">
 <h1>🔥{{name}}🔥</h1>
 <b>{{description}}</b>
 <p>Version {{version}}</p>
