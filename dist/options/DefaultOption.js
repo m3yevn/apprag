@@ -169,7 +169,7 @@ exports.DefaultOption = function () {
           _a.sent();
           return [
             4 /*yield*/,
-            FileService_1.readTemplate("templates/Default.md"),
+            FileService_1.readTemplate("../templates/Default.md"),
           ];
         case 2:
           template = _a.sent();
