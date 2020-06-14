@@ -1,8 +1,8 @@
 # 🔥Apprag🔥
 
 **Apprag - A Professional Project Readme Auto-Generator**
- <p>Version 1.0.3</p>
- by m3yevn
+<p>Version 1.0.4</p>
+<p>by m3yevn</p>
 
 <hr/>
  - **⚡ Instantly generate README for your project**
