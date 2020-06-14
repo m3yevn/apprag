@@ -9,7 +9,7 @@ import { existsSync } from "fs";
 export const DefaultOption = async () => {
   try {
     await spawnProcess("touch", [process.cwd() + "/README.md"]);
-    const template = await readTemplate("src/templates/Default.md");
+    const template = await readTemplate("templates/Default.md");
     const replacements = await getReplacements();
     const filledTemplate = fillTemplate(template, replacements);
     await writeTemplate(process.cwd() + "/README.md", filledTemplate);
@@ -20,7 +20,7 @@ export const DefaultOption = async () => {
 
 const getReplacements = async () => {
   let licenseFile;
-  const packageInfo = require("../../package.json");
+  const packageInfo = require(process.cwd() + "/package.json");
   const licenseExists = existsSync(process.cwd() + "/LICENSE");
   if (licenseExists) {
     licenseFile = await getLicense();
@@ -44,7 +44,7 @@ const getReplacements = async () => {
     publicUrl:
       packageInfo.publicUrl || "This project is not published to public!",
     screenshots: packageInfo.screenshots
-      ? renderList(packageInfo.screenshots as string[], ' - <img src="{}" />')
+      ? renderList(packageInfo.screenshots as string[], " - <img src=\"{}\" />")
       : "This project does not have screenshots available.",
     scripts:
       packageInfo.scripts && structureScripts(packageInfo.scripts).length
@@ -70,8 +70,8 @@ const getReplacements = async () => {
         ? renderList(structureScripts(packageInfo.devDependencies), " - {}")
         : "This project does not have dev dependencies",
     animations: packageInfo.animations
-      ? renderList(packageInfo.animations, '<img src="{}"')
-      : '<img src="https://cdn.dribbble.com/users/2401141/screenshots/5487982/developers-gif-showcase.gif"/>',
+      ? renderList(packageInfo.animations, "<img src=\"{}\"")
+      : "<img src=\"https://cdn.dribbble.com/users/2401141/screenshots/5487982/developers-gif-showcase.gif\"/>",
     footer: packageInfo.footer || "Happy Coding!",
   };
 };

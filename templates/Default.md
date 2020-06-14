@@ -1,6 +1,7 @@
 # 🔥{{name}}🔥
 
 **{{description}}**
+
 <p>Version {{version}}</p>
 <p>by {{author}}</p>
 

@@ -169,7 +169,7 @@ exports.DefaultOption = function () {
           _a.sent();
           return [
             4 /*yield*/,
-            FileService_1.readTemplate("src/templates/Default.md"),
+            FileService_1.readTemplate("templates/Default.md"),
           ];
         case 2:
           template = _a.sent();
@@ -203,7 +203,7 @@ var getReplacements = function () {
     return __generator(this, function (_a) {
       switch (_a.label) {
         case 0:
-          packageInfo = require("../../package.json");
+          packageInfo = require(process.cwd() + "/package.json");
           licenseExists = fs_1.existsSync(process.cwd() + "/LICENSE");
           if (!licenseExists) return [3 /*break*/, 2];
           return [4 /*yield*/, getLicense()];
