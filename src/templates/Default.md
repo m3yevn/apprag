@@ -1,8 +1,8 @@
 # 🔥{{name}}🔥
 
 **{{description}}**
-Version {{version}}
-by {{author}}
+<p>Version {{version}}</p>
+<p>by {{author}}</p>
 
 <hr/>
 {{funFacts}}

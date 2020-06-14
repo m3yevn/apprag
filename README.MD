@@ -1,10 +1,10 @@
-<div style="display:flex; flex-direction:column; justify-content:center;align-items:center;text-align:center">
-<h1>🔥Apprag🔥</h1>
-<b>Apprag - A Professional Project Readme Auto-Generator</b>
-<p>Version 1.0.2</p>
-<small>by m3yevn</small>
-</div>
+# 🔥Apprag🔥
 
+**Apprag - A Professional Project Readme Auto-Generator**
+ <p>Version 1.0.3</p>
+ by m3yevn
+
+<hr/>
  - **⚡ Instantly generate README for your project**
  - **⚙️ Easily configure and customize Readme templates**
  - **🦾 Automating your task to write beautiful Readme**
