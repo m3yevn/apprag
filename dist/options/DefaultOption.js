@@ -49,7 +49,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DefaultOption = void 0;
 var SpawnService_1 = require("../services/SpawnService");
-var FileService_1 = require("../services/FileService");
+var TemplateService_1 = require("../services/TemplateService");
 var fs_1 = require("fs");
 exports.DefaultOption = function () { return __awaiter(void 0, void 0, void 0, function () {
     var template, replacements, filledTemplate, ex_1;
@@ -60,14 +60,14 @@ exports.DefaultOption = function () { return __awaiter(void 0, void 0, void 0, f
                 return [4 /*yield*/, SpawnService_1.spawnProcess("touch", [process.cwd() + "/README.md"])];
             case 1:
                 _a.sent();
-                return [4 /*yield*/, FileService_1.readTemplate("https://raw.githubusercontent.com/m3yevn/apprag/master/templates/Default.md")];
+                return [4 /*yield*/, TemplateService_1.readTemplate("https://raw.githubusercontent.com/m3yevn/apprag/master/templates/Default.md")];
             case 2:
                 template = _a.sent();
                 return [4 /*yield*/, getReplacements()];
             case 3:
                 replacements = _a.sent();
-                filledTemplate = FileService_1.fillTemplate(template, replacements);
-                return [4 /*yield*/, FileService_1.writeTemplate(process.cwd() + "/README.md", filledTemplate)];
+                filledTemplate = TemplateService_1.fillTemplate(template, replacements);
+                return [4 /*yield*/, TemplateService_1.writeTemplate(process.cwd() + "/README.md", filledTemplate)];
             case 4:
                 _a.sent();
                 return [3 /*break*/, 6];
@@ -128,7 +128,7 @@ var getLicense = function () { return __awaiter(void 0, void 0, void 0, function
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, FileService_1.readTemplate(process.cwd() + "/LICENSE")];
+                return [4 /*yield*/, TemplateService_1.readTemplate(process.cwd() + "/LICENSE")];
             case 1:
                 licenseFile = _a.sent();
                 return [2 /*return*/, licenseFile];
