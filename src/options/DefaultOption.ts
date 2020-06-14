@@ -33,7 +33,7 @@ const getReplacements = async () => {
         (packageInfo.name as string).slice(1)
       : "This project name",
     funFacts: packageInfo.funFacts
-      ? renderList(packageInfo.funFacts as string[], " - #### {}")
+      ? renderList(packageInfo.funFacts as string[], " - **{}**")
       : "This project is awesome!",
     badges: packageInfo.badges
       ? renderList(packageInfo.badges as string[], "{}")
@@ -44,7 +44,7 @@ const getReplacements = async () => {
     publicUrl:
       packageInfo.publicUrl || "This project is not published to public!",
     screenshots: packageInfo.screenshots
-      ? renderList(packageInfo.screenshots as string[], " - <img src=\"{}\" />")
+      ? renderList(packageInfo.screenshots as string[], ' - <img src="{}" />')
       : "This project does not have screenshots available.",
     scripts:
       packageInfo.scripts && structureScripts(packageInfo.scripts).length
@@ -70,8 +70,8 @@ const getReplacements = async () => {
         ? renderList(structureScripts(packageInfo.devDependencies), " - {}")
         : "This project does not have dev dependencies",
     animations: packageInfo.animations
-      ? renderList(packageInfo.animations, "<img src=\"{}\"")
-      : "<img src=\"https://cdn.dribbble.com/users/2401141/screenshots/5487982/developers-gif-showcase.gif\"/>",
+      ? renderList(packageInfo.animations, '<img src="{}"')
+      : '<img src="https://cdn.dribbble.com/users/2401141/screenshots/5487982/developers-gif-showcase.gif"/>',
     footer: packageInfo.footer || "Happy Coding!",
   };
 };

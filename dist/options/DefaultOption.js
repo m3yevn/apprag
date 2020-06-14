@@ -219,7 +219,7 @@ var getReplacements = function () {
                   packageInfo.name.slice(1)
                 : "This project name",
               funFacts: packageInfo.funFacts
-                ? renderList(packageInfo.funFacts, " - #### {}")
+                ? renderList(packageInfo.funFacts, " - **{}**")
                 : "This project is awesome!",
               badges: packageInfo.badges
                 ? renderList(packageInfo.badges, "{}")
