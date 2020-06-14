@@ -5,25 +5,29 @@ var __importDefault =
     return mod && mod.__esModule ? mod : { default: mod };
   };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.fillTemplate = exports.writeTemplate = exports.readTemplate = void 0;
+exports.fillTemplate = exports.writeTemplate = exports.readTemplateFromFile = exports.readTemplateFromUrl = void 0;
 var handlebars_1 = __importDefault(require("handlebars"));
-var https_1 = require("https");
 var fs_1 = require("fs");
-exports.readTemplate = function (path) {
+var axios_1 = __importDefault(require("axios"));
+exports.readTemplateFromUrl = function (path) {
   return new Promise(function (resolve, reject) {
-    https_1.request(path, function (result) {
-      var data = "";
-      // A chunk of data has been recieved.
-      result.on("data", function (chunk) {
-        data += chunk;
-      });
-      // The whole response has been received. Print out the result.
-      result.on("end", function () {
-        resolve(data);
-      });
-      result.on("error", function (err) {
+    axios_1.default
+      .get(path)
+      .then(function (result) {
+        resolve(result.data);
+      })
+      .catch(function (err) {
         reject(err);
       });
+  });
+};
+exports.readTemplateFromFile = function (path) {
+  return new Promise(function (resolve, reject) {
+    fs_1.readFile(path, { encoding: "utf-8" }, function (error, result) {
+      if (error) {
+        return reject(error);
+      }
+      return resolve(result);
     });
   });
 };

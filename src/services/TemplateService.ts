@@ -1,25 +1,27 @@
 import handlebars from "handlebars";
-import { request } from "https";
-import { writeFile } from "fs";
+import { writeFile, readFile } from "fs";
+import axios from "axios";
 
-export const readTemplate = (path: string): Promise<string> => {
+export const readTemplateFromUrl = (path: string): Promise<any> => {
   return new Promise((resolve, reject) => {
-    request(path, (result) => {
-      let data = "";
-
-      // A chunk of data has been recieved.
-      result.on("data", (chunk) => {
-        data += chunk;
-      });
-
-      // The whole response has been received. Print out the result.
-      result.on("end", () => {
-        resolve(data);
-      });
-
-      result.on("error", (err) => {
+    axios
+      .get(path)
+      .then((result) => {
+        resolve(result.data);
+      })
+      .catch((err) => {
         reject(err);
       });
+  });
+};
+
+export const readTemplateFromFile = (path: string): Promise<any> => {
+  return new Promise((resolve, reject) => {
+    readFile(path, { encoding: "utf-8" }, (error, result) => {
+      if (error) {
+        return reject(error);
+      }
+      return resolve(result);
     });
   });
 };

@@ -1,15 +1,16 @@
 import { spawnProcess } from "../services/SpawnService";
 import {
-  readTemplate,
   fillTemplate,
   writeTemplate,
+  readTemplateFromUrl,
+  readTemplateFromFile,
 } from "../services/TemplateService";
 import { existsSync } from "fs";
 
 export const DefaultOption = async () => {
   try {
     await spawnProcess("touch", [process.cwd() + "/README.md"]);
-    const template = await readTemplate(
+    const template = await readTemplateFromUrl(
       "https://raw.githubusercontent.com/m3yevn/apprag/master/templates/Default.md"
     );
     const replacements = await getReplacements();
@@ -46,7 +47,7 @@ const getReplacements = async () => {
     publicUrl:
       packageInfo.publicUrl || "This project is not published to public!",
     screenshots: packageInfo.screenshots
-      ? renderList(packageInfo.screenshots as string[], ' - <img src="{}" />')
+      ? renderList(packageInfo.screenshots as string[], " - <img src=\"{}\" />")
       : "This project does not have screenshots available.",
     scripts:
       packageInfo.scripts && structureScripts(packageInfo.scripts).length
@@ -72,15 +73,15 @@ const getReplacements = async () => {
         ? renderList(structureScripts(packageInfo.devDependencies), " - {}")
         : "This project does not have dev dependencies",
     animations: packageInfo.animations
-      ? renderList(packageInfo.animations, '<img src="{}"')
-      : '<img src="https://cdn.dribbble.com/users/2401141/screenshots/5487982/developers-gif-showcase.gif"/>',
+      ? renderList(packageInfo.animations, "<img src=\"{}\"")
+      : "<img src=\"https://cdn.dribbble.com/users/2401141/screenshots/5487982/developers-gif-showcase.gif\"/>",
     footer: packageInfo.footer || "Happy Coding!",
   };
 };
 
 const getLicense = async () => {
   try {
-    const licenseFile = await readTemplate(process.cwd() + "/LICENSE");
+    const licenseFile = await readTemplateFromFile(process.cwd() + "/LICENSE");
     return licenseFile;
   } catch (ex) {
     console.error(ex);
