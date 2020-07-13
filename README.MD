@@ -6,6 +6,7 @@
 <p>by m3yevn</p>
 
 <hr/>
+
  - ⚡ Instantly generate README for your project
  - ⚙️ Easily configure and customize Readme templates
  - 🦾 Automating your task to write beautiful Readme
