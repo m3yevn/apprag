@@ -6,6 +6,7 @@
 <p>by {{author}}</p>
 
 <hr/>
+
 {{funFacts}}
 
 {{{badges}}}
