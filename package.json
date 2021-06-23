@@ -8,19 +8,6 @@
     "build": "rm -rf dist && tsc",
     "publish": "npm run publish --access=public"
   },
-  "publicUrl": "https://npmjs.com/package/apprag",
-  "techStacks": [
-    "NodeJs",
-    "HandlebarJs",
-    "Typescript",
-    "Npm"
-  ],
-  "funFacts": [
-    "⚡ Instantly generate README for your project",
-    "⚙️ Easily configure and customize Readme templates",
-    "🦾 Automating your task to write beautiful Readme",
-    "📦 Utilizing Nodejs package.json for project information"
-  ],
   "bin": {
     "apprag": "./bin/apprag"
   },
@@ -35,10 +22,6 @@
   ],
   "author": "m3yevn",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/m3yevn/apprag/issues"
-  },
-  "homepage": "https://github.com/m3yevn/apprag#readme",
   "devDependencies": {
     "@types/node": "^14.0.13",
     "@typescript-eslint/eslint-plugin": "^3.2.0",
@@ -68,5 +51,9 @@
   "dependencies": {
     "axios": "^0.21.1",
     "handlebars": "^4.7.6"
-  }
+  },
+  "funFacts": [],
+  "badges": [],
+  "techStacks": [],
+  "screenshots": []
 }

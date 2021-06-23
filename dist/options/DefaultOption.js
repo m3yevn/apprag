@@ -152,6 +152,13 @@ exports.DefaultOption = void 0;
 var SpawnService_1 = require("../services/SpawnService");
 var TemplateService_1 = require("../services/TemplateService");
 var fs_1 = require("fs");
+var ReadlineService_1 = require("../services/ReadlineService");
+var README_PATH = "/README.md";
+var CREATE_FILE_CMD = process.platform === "win32" ? "type nul > " : "touch";
+var REPO_PATH =
+  process.platform === "win32"
+    ? process.cwd().replace(/\\/g, "/")
+    : process.cwd();
 exports.DefaultOption = function () {
   return __awaiter(void 0, void 0, void 0, function () {
     var template, replacements, filledTemplate, ex_1;
@@ -161,9 +168,10 @@ exports.DefaultOption = function () {
           _a.trys.push([0, 5, , 6]);
           return [
             4 /*yield*/,
-            SpawnService_1.spawnProcess("touch", [
-              process.cwd() + "/README.md",
-            ]),
+            SpawnService_1.spawnProcess(
+              CREATE_FILE_CMD + REPO_PATH + README_PATH,
+              []
+            ),
           ];
         case 1:
           _a.sent();
@@ -185,7 +193,7 @@ exports.DefaultOption = function () {
           return [
             4 /*yield*/,
             TemplateService_1.writeTemplate(
-              process.cwd() + "/README.md",
+              REPO_PATH + README_PATH,
               filledTemplate
             ),
           ];
@@ -205,17 +213,45 @@ exports.DefaultOption = function () {
 var getReplacements = function () {
   return __awaiter(void 0, void 0, void 0, function () {
     var licenseFile, packageInfo, licenseExists;
-    return __generator(this, function (_a) {
-      switch (_a.label) {
+    var _a, _b, _c, _d;
+    return __generator(this, function (_e) {
+      switch (_e.label) {
         case 0:
           packageInfo = require(process.cwd() + "/package.json");
           licenseExists = fs_1.existsSync(process.cwd() + "/LICENSE");
           if (!licenseExists) return [3 /*break*/, 2];
           return [4 /*yield*/, getLicense()];
         case 1:
-          licenseFile = _a.sent();
-          _a.label = 2;
+          licenseFile = _e.sent();
+          _e.label = 2;
         case 2:
+          if (!packageInfo.name) {
+            ReadlineService_1.readLine(
+              "There is no name for this project. Please enter the name.\r\n",
+              function (answer) {
+                packageInfo.name = answer;
+                TemplateService_1.writeTemplate(
+                  REPO_PATH + "/package.json",
+                  JSON.stringify(packageInfo, null, "\t")
+                );
+              }
+            );
+          }
+          if (!packageInfo.funFacts) {
+            packageInfo.funFacts = [];
+          }
+          if (!packageInfo.badges) {
+            packageInfo.badges = [];
+          }
+          if (!packageInfo.techStacks) {
+            packageInfo.techStacks = [];
+          }
+          if (!packageInfo.publicUrl) {
+            packageInfo.techStacks = [];
+          }
+          if (!packageInfo.screenshots) {
+            packageInfo.screenshots = [];
+          }
           return [
             2 /*return*/,
             __assign(__assign({}, packageInfo), {
@@ -223,26 +259,40 @@ var getReplacements = function () {
                 ? packageInfo.name.charAt(0).toUpperCase() +
                   packageInfo.name.slice(1)
                 : "This project name",
-              funFacts: packageInfo.funFacts
+              funFacts: (
+                (_a = packageInfo.funFacts) === null || _a === void 0
+                  ? void 0
+                  : _a.length
+              )
                 ? renderList(packageInfo.funFacts, " - {}")
-                : "This project is awesome!",
-              badges: packageInfo.badges
+                : "",
+              badges: (
+                (_b = packageInfo.badges) === null || _b === void 0
+                  ? void 0
+                  : _b.length
+              )
                 ? renderList(packageInfo.badges, "{}")
-                : "This project is well tested!",
-              techStacks: packageInfo.techStacks
+                : "",
+              techStacks: (
+                (_c = packageInfo.techStacks) === null || _c === void 0
+                  ? void 0
+                  : _c.length
+              )
                 ? renderList(packageInfo.techStacks, " - {}")
-                : "This project is using awesome tech stacks!",
-              publicUrl:
-                packageInfo.publicUrl ||
-                "This project is not published to public!",
-              screenshots: packageInfo.screenshots
+                : "N.A",
+              publicUrl: packageInfo.publicUrl || "N.A",
+              screenshots: (
+                (_d = packageInfo.screenshots) === null || _d === void 0
+                  ? void 0
+                  : _d.length
+              )
                 ? renderList(packageInfo.screenshots, ' - <img src="{}" />')
-                : "This project does not have screenshots available.",
+                : "N.A",
               scripts:
                 packageInfo.scripts &&
                 structureScripts(packageInfo.scripts).length
                   ? renderList(structureScripts(packageInfo.scripts), "{}")
-                  : "This project does not have scripts to run.",
+                  : "N.A",
               bugUrl:
                 packageInfo.bugs && packageInfo.bugs.url
                   ? packageInfo.bugs.url

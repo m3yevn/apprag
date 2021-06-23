@@ -2,34 +2,25 @@
 
 **Apprag - A Professional Project Readme Auto-Generator**
 
-<p>Version 1.0.9</p>
+<p>Version 1.1.0</p>
 <p>by m3yevn</p>
 
 <hr/>
 
- - ⚡ Instantly generate README for your project
- - ⚙️ Easily configure and customize Readme templates
- - 🦾 Automating your task to write beautiful Readme
- - 📦 Utilizing Nodejs package.json for project information
 
 
-This project is well tested!
 
 ## ⭐ Public Url
 
-https://npmjs.com/package/apprag
+N.A
 
 ## 📚 Tech Stack
 
- - NodeJs
- - HandlebarJs
- - Typescript
- - Npm
-
+N.A
 
 ## 📸 Screenshots
 
-This project does not have screenshots available.
+N.A
 
 ## 📜 Scripts
 
@@ -46,7 +37,7 @@ readme,readme.md,auto-generator
 
 ## 👾 Submit issues at
 
-https://github.com/m3yevn/apprag/issues
+Visit the repository to open bug reports and issues
 
 ## ©️ License
 
@@ -74,7 +65,7 @@ SOFTWARE.
 
 ## Dependencies
 
- - axios : $ ^0.19.2
+ - axios : $ ^0.21.1
  - handlebars : $ ^4.7.6
 
 

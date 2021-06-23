@@ -32,7 +32,7 @@ export const writeTemplate = (path: string, data: string): Promise<string> => {
       if (err) {
         return reject(err);
       }
-      return resolve();
+      return resolve("");
     });
   });
 };

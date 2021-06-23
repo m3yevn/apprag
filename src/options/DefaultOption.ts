@@ -6,16 +6,24 @@ import {
   readTemplateFromFile,
 } from "../services/TemplateService";
 import { existsSync } from "fs";
+import { readLine } from "../services/ReadlineService";
+
+const README_PATH = "/README.md";
+const CREATE_FILE_CMD = process.platform === "win32" ? "type nul > " : "touch";
+const REPO_PATH =
+  process.platform === "win32"
+    ? process.cwd().replace(/\\/g, "/")
+    : process.cwd();
 
 export const DefaultOption = async () => {
   try {
-    await spawnProcess("touch", [process.cwd() + "/README.md"]);
+    await spawnProcess(CREATE_FILE_CMD + REPO_PATH + README_PATH, []);
     const template = await readTemplateFromUrl(
       "https://raw.githubusercontent.com/m3yevn/apprag/master/templates/Default.md"
     );
     const replacements = await getReplacements();
     const filledTemplate = fillTemplate(template, replacements);
-    await writeTemplate(process.cwd() + "/README.md", filledTemplate);
+    await writeTemplate(REPO_PATH + README_PATH, filledTemplate);
   } catch (ex) {
     console.error(ex);
   }
@@ -29,30 +37,58 @@ const getReplacements = async () => {
     licenseFile = await getLicense();
   }
 
+  if (!packageInfo.name) {
+    readLine(
+      "There is no name for this project. Please enter the name.\r\n",
+      (answer: any) => {
+        packageInfo.name = answer;
+        writeTemplate(
+          REPO_PATH + "/package.json",
+          JSON.stringify(packageInfo, null, "\t")
+        );
+      }
+    );
+  }
+
+  if (!packageInfo.funFacts) {
+    packageInfo.funFacts = [];
+  }
+  if (!packageInfo.badges) {
+    packageInfo.badges = [];
+  }
+  if (!packageInfo.techStacks) {
+    packageInfo.techStacks = [];
+  }
+  if (!packageInfo.publicUrl) {
+    packageInfo.techStacks = [];
+  }
+  if (!packageInfo.screenshots) {
+    packageInfo.screenshots = [];
+  }
+
   return {
     ...packageInfo,
     name: packageInfo.name
       ? (packageInfo.name as string).charAt(0).toUpperCase() +
         (packageInfo.name as string).slice(1)
       : "This project name",
-    funFacts: packageInfo.funFacts
+    funFacts: packageInfo.funFacts?.length
       ? renderList(packageInfo.funFacts as string[], " - {}")
-      : "This project is awesome!",
-    badges: packageInfo.badges
+      : "",
+    badges: packageInfo.badges?.length
       ? renderList(packageInfo.badges as string[], "{}")
-      : "This project is well tested!",
-    techStacks: packageInfo.techStacks
+      : "",
+    techStacks: packageInfo.techStacks?.length
       ? renderList(packageInfo.techStacks as string[], " - {}")
-      : "This project is using awesome tech stacks!",
-    publicUrl:
-      packageInfo.publicUrl || "This project is not published to public!",
-    screenshots: packageInfo.screenshots
+      : "N.A",
+    publicUrl: packageInfo.publicUrl || "N.A",
+    screenshots: packageInfo.screenshots?.length
       ? renderList(packageInfo.screenshots as string[], " - <img src=\"{}\" />")
-      : "This project does not have screenshots available.",
+      : "N.A",
     scripts:
       packageInfo.scripts && structureScripts(packageInfo.scripts).length
         ? renderList(structureScripts(packageInfo.scripts), "{}")
-        : "This project does not have scripts to run.",
+        : "N.A",
     bugUrl:
       packageInfo.bugs && packageInfo.bugs.url
         ? packageInfo.bugs.url

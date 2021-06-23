@@ -5,7 +5,11 @@ var __importDefault =
     return mod && mod.__esModule ? mod : { default: mod };
   };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.fillTemplate = exports.writeTemplate = exports.readTemplateFromFile = exports.readTemplateFromUrl = void 0;
+exports.fillTemplate =
+  exports.writeTemplate =
+  exports.readTemplateFromFile =
+  exports.readTemplateFromUrl =
+    void 0;
 var handlebars_1 = __importDefault(require("handlebars"));
 var fs_1 = require("fs");
 var axios_1 = __importDefault(require("axios"));
@@ -37,7 +41,7 @@ exports.writeTemplate = function (path, data) {
       if (err) {
         return reject(err);
       }
-      return resolve();
+      return resolve("");
     });
   });
 };
