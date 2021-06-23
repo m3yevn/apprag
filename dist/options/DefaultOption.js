@@ -213,17 +213,17 @@ exports.DefaultOption = function () {
 var getReplacements = function () {
   return __awaiter(void 0, void 0, void 0, function () {
     var licenseFile, packageInfo, licenseExists;
-    var _a, _b, _c, _d;
-    return __generator(this, function (_e) {
-      switch (_e.label) {
+    var _a, _b, _c, _d, _e;
+    return __generator(this, function (_f) {
+      switch (_f.label) {
         case 0:
           packageInfo = require(process.cwd() + "/package.json");
           licenseExists = fs_1.existsSync(process.cwd() + "/LICENSE");
           if (!licenseExists) return [3 /*break*/, 2];
           return [4 /*yield*/, getLicense()];
         case 1:
-          licenseFile = _e.sent();
-          _e.label = 2;
+          licenseFile = _f.sent();
+          _f.label = 2;
         case 2:
           if (!packageInfo.name) {
             ReadlineService_1.readLine(
@@ -236,6 +236,13 @@ var getReplacements = function () {
                 );
               }
             );
+          }
+          if (!packageInfo.version) {
+            packageInfo.version =
+              (_a = packageInfo.version) !== null && _a !== void 0 ? _a : "1.0";
+          }
+          if (!packageInfo.author) {
+            packageInfo.author = "";
           }
           if (!packageInfo.funFacts) {
             packageInfo.funFacts = [];
@@ -252,6 +259,10 @@ var getReplacements = function () {
           if (!packageInfo.screenshots) {
             packageInfo.screenshots = [];
           }
+          TemplateService_1.writeTemplate(
+            REPO_PATH + "/package.json",
+            JSON.stringify(packageInfo, null, "\t")
+          );
           return [
             2 /*return*/,
             __assign(__assign({}, packageInfo), {
@@ -260,31 +271,31 @@ var getReplacements = function () {
                   packageInfo.name.slice(1)
                 : "This project name",
               funFacts: (
-                (_a = packageInfo.funFacts) === null || _a === void 0
+                (_b = packageInfo.funFacts) === null || _b === void 0
                   ? void 0
-                  : _a.length
+                  : _b.length
               )
                 ? renderList(packageInfo.funFacts, " - {}")
                 : "",
               badges: (
-                (_b = packageInfo.badges) === null || _b === void 0
+                (_c = packageInfo.badges) === null || _c === void 0
                   ? void 0
-                  : _b.length
+                  : _c.length
               )
                 ? renderList(packageInfo.badges, "{}")
                 : "",
               techStacks: (
-                (_c = packageInfo.techStacks) === null || _c === void 0
+                (_d = packageInfo.techStacks) === null || _d === void 0
                   ? void 0
-                  : _c.length
+                  : _d.length
               )
                 ? renderList(packageInfo.techStacks, " - {}")
                 : "N.A",
               publicUrl: packageInfo.publicUrl || "N.A",
               screenshots: (
-                (_d = packageInfo.screenshots) === null || _d === void 0
+                (_e = packageInfo.screenshots) === null || _e === void 0
                   ? void 0
-                  : _d.length
+                  : _e.length
               )
                 ? renderList(packageInfo.screenshots, ' - <img src="{}" />')
                 : "N.A",
@@ -297,11 +308,10 @@ var getReplacements = function () {
                 packageInfo.bugs && packageInfo.bugs.url
                   ? packageInfo.bugs.url
                   : "Visit the repository to open bug reports and issues",
-              license: packageInfo.license
-                ? licenseExists
-                  ? licenseFile
-                  : packageInfo.license
-                : "This project does not have a license.",
+              license: licenseExists
+                ? licenseFile
+                : packageInfo.license ||
+                  "This project does not have a license.",
               dependencies:
                 packageInfo.dependencies &&
                 structureDependencies(packageInfo.dependencies).length

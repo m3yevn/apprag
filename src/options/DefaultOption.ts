@@ -50,6 +50,12 @@ const getReplacements = async () => {
     );
   }
 
+  if (!packageInfo.version) {
+    packageInfo.version = packageInfo.version ?? "1.0";
+  }
+  if (!packageInfo.author) {
+    packageInfo.author = "";
+  }
   if (!packageInfo.funFacts) {
     packageInfo.funFacts = [];
   }
@@ -65,6 +71,11 @@ const getReplacements = async () => {
   if (!packageInfo.screenshots) {
     packageInfo.screenshots = [];
   }
+
+  writeTemplate(
+    REPO_PATH + "/package.json",
+    JSON.stringify(packageInfo, null, "\t")
+  );
 
   return {
     ...packageInfo,
@@ -93,11 +104,9 @@ const getReplacements = async () => {
       packageInfo.bugs && packageInfo.bugs.url
         ? packageInfo.bugs.url
         : "Visit the repository to open bug reports and issues",
-    license: packageInfo.license
-      ? licenseExists
-        ? licenseFile
-        : packageInfo.license
-      : "This project does not have a license.",
+    license: licenseExists
+      ? licenseFile
+      : packageInfo.license || "This project does not have a license.",
     dependencies:
       packageInfo.dependencies &&
       structureDependencies(packageInfo.dependencies).length
