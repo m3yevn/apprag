@@ -1,14 +1,14 @@
-# 🔥Apprag🔥
+# Apprag
 
 **Apprag - A Professional Project Readme Auto-Generator**
 
-<p>Version 1.2</p>
+<p>Version 1.2.1</p>
 <p>by m3yevn</p>
 
 <hr/>
 
- - Instantly generate README for your project
- -  Easily configure and customize Readme templates
+ - ⚡ Instantly generate README for your project
+ - ⚙️ Easily configure and customize Readme templates
  - 🦾 Automating your task to write beautiful Readme
  - 📦 Utilizing Nodejs package.json for project information
 
@@ -36,7 +36,8 @@ N.A
 ```sh
 test : $ npm run test
 build : $ rm -rf dist && tsc
-publish : $ npm run publish --access=public
+build:win : $ rmdir /s dist && tsc
+publish : $ npm publish --access=public
 
 ```
 
