@@ -1,13 +1,13 @@
 {
   "name": "apprag",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Apprag - A Professional Project Readme Auto-Generator",
   "main": "dist/index.js",
   "scripts": {
     "test": "npm run test",
     "build": "rm -rf dist && tsc",
     "build:win": "rmdir /s dist && tsc",
-    "publish": "npm run publish --access=public"
+    "publish": "npm publish --access=public"
   },
   "publicUrl": "https://npmjs.com/package/apprag",
   "techStacks": [
