@@ -29,9 +29,17 @@ export const DefaultOption = async () => {
   }
 };
 
+const getPackage = () => {
+  try {
+    return require(process.cwd() + "/package.json");
+  } catch (ex) {
+    console.error("There is no package.json inside the directory.");
+  }
+};
+
 const getReplacements = async () => {
   let licenseFile;
-  const packageInfo = require(process.cwd() + "/package.json");
+  const packageInfo = getPackage();
   const licenseExists = existsSync(process.cwd() + "/LICENSE");
   if (licenseExists) {
     licenseFile = await getLicense();
@@ -66,7 +74,7 @@ const getReplacements = async () => {
     packageInfo.techStacks = [];
   }
   if (!packageInfo.publicUrl) {
-    packageInfo.techStacks = [];
+    packageInfo.publicUrl = "";
   }
   if (!packageInfo.screenshots) {
     packageInfo.screenshots = [];

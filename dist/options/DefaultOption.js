@@ -210,6 +210,13 @@ exports.DefaultOption = function () {
     });
   });
 };
+var getPackage = function () {
+  try {
+    return require(process.cwd() + "/package.json");
+  } catch (ex) {
+    console.error("There is no package.json inside the directory.");
+  }
+};
 var getReplacements = function () {
   return __awaiter(void 0, void 0, void 0, function () {
     var licenseFile, packageInfo, licenseExists;
@@ -217,7 +224,7 @@ var getReplacements = function () {
     return __generator(this, function (_f) {
       switch (_f.label) {
         case 0:
-          packageInfo = require(process.cwd() + "/package.json");
+          packageInfo = getPackage();
           licenseExists = fs_1.existsSync(process.cwd() + "/LICENSE");
           if (!licenseExists) return [3 /*break*/, 2];
           return [4 /*yield*/, getLicense()];
@@ -254,7 +261,7 @@ var getReplacements = function () {
             packageInfo.techStacks = [];
           }
           if (!packageInfo.publicUrl) {
-            packageInfo.techStacks = [];
+            packageInfo.publicUrl = "";
           }
           if (!packageInfo.screenshots) {
             packageInfo.screenshots = [];
