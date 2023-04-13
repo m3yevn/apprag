@@ -40,9 +40,6 @@
     "typescript": "^3.9.5"
   },
   "husky": {
-    "hooks": {
-      "pre-commit": "tsc && git add . && lint-staged --allow-empty"
-    }
   },
   "lint-staged": {
     "*.ts": [
