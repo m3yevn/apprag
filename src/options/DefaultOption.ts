@@ -137,10 +137,13 @@ const getReplacements = async () => {
       structureDependencies(packageInfo.devDependencies).length
         ? renderList(structureScripts(packageInfo.devDependencies), " - {}")
         : "This project does not have dev dependencies",
-    animations: packageInfo.animations
+    animations: packageInfo.animations?.length
       ? renderList(packageInfo.animations, "<img src=\"{}\"")
       : "<img src=\"https://cdn.dribbble.com/users/2401141/screenshots/5487982/developers-gif-showcase.gif\"/>",
     footer: packageInfo.footer || "Happy Coding!",
+    documentations: packageInfo.documentations?.length
+      ? renderList(packageInfo.documentations as string[], " - {}")
+      : "This project does not have documentations",
   };
 };
 

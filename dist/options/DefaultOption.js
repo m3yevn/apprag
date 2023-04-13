@@ -233,17 +233,17 @@ var getPackage = function () {
 var getReplacements = function () {
   return __awaiter(void 0, void 0, void 0, function () {
     var licenseFile, packageInfo, licenseExists;
-    var _a, _b, _c, _d, _e;
-    return __generator(this, function (_f) {
-      switch (_f.label) {
+    var _a, _b, _c, _d, _e, _f, _g;
+    return __generator(this, function (_h) {
+      switch (_h.label) {
         case 0:
           packageInfo = getPackage();
           licenseExists = fs_1.existsSync(process.cwd() + "/LICENSE");
           if (!licenseExists) return [3 /*break*/, 2];
           return [4 /*yield*/, getLicense()];
         case 1:
-          licenseFile = _f.sent();
-          _f.label = 2;
+          licenseFile = _h.sent();
+          _h.label = 2;
         case 2:
           if (!packageInfo.name) {
             ReadlineService_1.readLine(
@@ -348,10 +348,21 @@ var getReplacements = function () {
                       " - {}"
                     )
                   : "This project does not have dev dependencies",
-              animations: packageInfo.animations
+              animations: (
+                (_f = packageInfo.animations) === null || _f === void 0
+                  ? void 0
+                  : _f.length
+              )
                 ? renderList(packageInfo.animations, '<img src="{}"')
                 : '<img src="https://cdn.dribbble.com/users/2401141/screenshots/5487982/developers-gif-showcase.gif"/>',
               footer: packageInfo.footer || "Happy Coding!",
+              documentations: (
+                (_g = packageInfo.documentations) === null || _g === void 0
+                  ? void 0
+                  : _g.length
+              )
+                ? renderList(packageInfo.documentations, " - {}")
+                : "This project does not have documentations",
             }),
           ];
       }

@@ -53,5 +53,7 @@
 
 ## Documentations
 
+{{documentations}}
+
 <hr/>
 {{footer}}
