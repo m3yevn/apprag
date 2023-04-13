@@ -2,7 +2,7 @@
 
 **Apprag - A Professional Project Readme Auto-Generator**
 
-<p>Version 1.3.4</p>
+<p>Version 1.3.5</p>
 <p>by m3yevn</p>
 
 <hr/>
