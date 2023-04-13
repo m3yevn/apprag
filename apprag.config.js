@@ -12,4 +12,5 @@ module.exports = {
   documentations: [],
   animations: [],
   footer: "",
+  badges: [],
 };

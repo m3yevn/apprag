@@ -218,7 +218,9 @@ var getPackage_V2 = function () {
   try {
     return require(process.cwd() + "/apprag.config.js");
   } catch (ex) {
-    console.error("There is no apprag.config.js inside the directory.");
+    console.error(
+      'There is no apprag.config.js inside the directory. \n    Run "apprag --config" command to generate the template and fill.'
+    );
   }
 };
 var getPackage = function () {
@@ -233,17 +235,17 @@ var getPackage = function () {
 var getReplacements = function () {
   return __awaiter(void 0, void 0, void 0, function () {
     var licenseFile, packageInfo, licenseExists;
-    var _a, _b, _c, _d, _e, _f, _g;
-    return __generator(this, function (_h) {
-      switch (_h.label) {
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m;
+    return __generator(this, function (_o) {
+      switch (_o.label) {
         case 0:
           packageInfo = getPackage();
           licenseExists = fs_1.existsSync(process.cwd() + "/LICENSE");
           if (!licenseExists) return [3 /*break*/, 2];
           return [4 /*yield*/, getLicense()];
         case 1:
-          licenseFile = _h.sent();
-          _h.label = 2;
+          licenseFile = _o.sent();
+          _o.label = 2;
         case 2:
           if (!packageInfo.name) {
             ReadlineService_1.readLine(
@@ -264,25 +266,44 @@ var getReplacements = function () {
           if (!packageInfo.author) {
             packageInfo.author = "";
           }
-          if (!packageInfo.funFacts) {
+          if (
+            !((_b = packageInfo.funFacts) === null || _b === void 0
+              ? void 0
+              : _b.length)
+          ) {
             packageInfo.funFacts = [];
           }
-          if (!packageInfo.badges) {
+          if (
+            !((_c = packageInfo.badges) === null || _c === void 0
+              ? void 0
+              : _c.length)
+          ) {
             packageInfo.badges = [];
           }
-          if (!packageInfo.techStacks) {
+          if (
+            !((_d = packageInfo.techStacks) === null || _d === void 0
+              ? void 0
+              : _d.length)
+          ) {
             packageInfo.techStacks = [];
           }
           if (!packageInfo.publicUrl) {
             packageInfo.publicUrl = "";
           }
-          if (!packageInfo.screenshots) {
+          if (
+            !((_e = packageInfo.screenshots) === null || _e === void 0
+              ? void 0
+              : _e.length)
+          ) {
             packageInfo.screenshots = [];
           }
-          TemplateService_1.writeTemplate(
-            constants_1.REPO_PATH + "/package.json",
-            JSON.stringify(packageInfo, null, "\t")
-          );
+          if (
+            !((_f = packageInfo.documentations) === null || _f === void 0
+              ? void 0
+              : _f.length)
+          ) {
+            packageInfo.documentations = [];
+          }
           return [
             2 /*return*/,
             __assign(__assign({}, packageInfo), {
@@ -291,31 +312,31 @@ var getReplacements = function () {
                   packageInfo.name.slice(1)
                 : "This project name",
               funFacts: (
-                (_b = packageInfo.funFacts) === null || _b === void 0
+                (_g = packageInfo.funFacts) === null || _g === void 0
                   ? void 0
-                  : _b.length
+                  : _g.length
               )
                 ? renderList(packageInfo.funFacts, " - {}")
                 : "",
               badges: (
-                (_c = packageInfo.badges) === null || _c === void 0
+                (_h = packageInfo.badges) === null || _h === void 0
                   ? void 0
-                  : _c.length
+                  : _h.length
               )
                 ? renderList(packageInfo.badges, "{}")
                 : "",
               techStacks: (
-                (_d = packageInfo.techStacks) === null || _d === void 0
+                (_j = packageInfo.techStacks) === null || _j === void 0
                   ? void 0
-                  : _d.length
+                  : _j.length
               )
                 ? renderList(packageInfo.techStacks, " - {}")
                 : "N.A",
               publicUrl: packageInfo.publicUrl || "N.A",
               screenshots: (
-                (_e = packageInfo.screenshots) === null || _e === void 0
+                (_k = packageInfo.screenshots) === null || _k === void 0
                   ? void 0
-                  : _e.length
+                  : _k.length
               )
                 ? renderList(packageInfo.screenshots, ' - <img src="{}" />')
                 : "N.A",
@@ -349,17 +370,17 @@ var getReplacements = function () {
                     )
                   : "This project does not have dev dependencies",
               animations: (
-                (_f = packageInfo.animations) === null || _f === void 0
+                (_l = packageInfo.animations) === null || _l === void 0
                   ? void 0
-                  : _f.length
+                  : _l.length
               )
                 ? renderList(packageInfo.animations, '<img src="{}"')
                 : '<img src="https://cdn.dribbble.com/users/2401141/screenshots/5487982/developers-gif-showcase.gif"/>',
               footer: packageInfo.footer || "Happy Coding!",
               documentations: (
-                (_g = packageInfo.documentations) === null || _g === void 0
+                (_m = packageInfo.documentations) === null || _m === void 0
                   ? void 0
-                  : _g.length
+                  : _m.length
               )
                 ? renderList(packageInfo.documentations, " - {}")
                 : "This project does not have documentations",
