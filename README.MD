@@ -2,7 +2,7 @@
 
 **Apprag - A Professional Project Readme Auto-Generator**
 
-<p>Version 1.3.1</p>
+<p>Version 1.3.4</p>
 <p>by m3yevn</p>
 
 <hr/>
@@ -96,6 +96,8 @@ SOFTWARE.
 <img src="https://cdn.dribbble.com/users/2401141/screenshots/5487982/developers-gif-showcase.gif"/>
 
 ## Documentations
+
+This project does not have documentations
 
 <hr/>
 Happy Coding!

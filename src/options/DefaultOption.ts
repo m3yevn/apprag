@@ -35,7 +35,8 @@ const getPackage_V2 = () => {
   try {
     return require(process.cwd() + "/apprag.config.js");
   } catch (ex) {
-    console.error("There is no apprag.config.js inside the directory.");
+    console.error(`There is no apprag.config.js inside the directory. 
+    Run "apprag --config" command to generate the template and fill.`);
   }
 };
 
@@ -76,27 +77,25 @@ const getReplacements = async () => {
   if (!packageInfo.author) {
     packageInfo.author = "";
   }
-  if (!packageInfo.funFacts) {
+  if (!packageInfo.funFacts?.length) {
     packageInfo.funFacts = [];
   }
-  if (!packageInfo.badges) {
+  if (!packageInfo.badges?.length) {
     packageInfo.badges = [];
   }
-  if (!packageInfo.techStacks) {
+  if (!packageInfo.techStacks?.length) {
     packageInfo.techStacks = [];
   }
   if (!packageInfo.publicUrl) {
     packageInfo.publicUrl = "";
   }
-  if (!packageInfo.screenshots) {
+  if (!packageInfo.screenshots?.length) {
     packageInfo.screenshots = [];
   }
-
-  writeTemplate(
-    REPO_PATH + "/package.json",
-    JSON.stringify(packageInfo, null, "\t")
-  );
-
+  if (!packageInfo.documentations?.length) {
+    packageInfo.documentations = [];
+  }
+  
   return {
     ...packageInfo,
     name: packageInfo.name

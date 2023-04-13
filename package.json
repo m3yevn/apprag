@@ -1,6 +1,6 @@
 {
   "name": "apprag",
-  "version": "1.3.2",
+  "version": "1.3.4",
   "description": "Apprag - A Professional Project Readme Auto-Generator",
   "main": "dist/index.js",
   "scripts": {
@@ -56,24 +56,5 @@
   "dependencies": {
     "axios": "^0.21.1",
     "handlebars": "^4.7.6"
-  },
-  "publicUrl": "https://npmjs.com/package/apprag",
-  "techStacks": [
-    "NodeJs",
-    "HandlebarJs",
-    "Typescript",
-    "Npm"
-  ],
-  "funFacts": [
-    "⚡ Instantly generate README for your project",
-    "⚙️ Easily configure and customize Readme templates",
-    "🦾 Automating your task to write beautiful Readme",
-    "📦 Utilizing Nodejs package.json for project information"
-  ],
-  "bugUrl": "",
-  "screenshots": [],
-  "documentations": [],
-  "animations": [],
-  "footer": "",
-  "badges": []
+  }
 }
