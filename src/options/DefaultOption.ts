@@ -7,13 +7,7 @@ import {
 } from "../services/TemplateService";
 import { existsSync } from "fs";
 import { readLine } from "../services/ReadlineService";
-
-const README_PATH = "/README.md";
-const CREATE_FILE_CMD = process.platform === "win32" ? "type nul > " : "touch";
-const REPO_PATH =
-  process.platform === "win32"
-    ? process.cwd().replace(/\\/g, "/")
-    : process.cwd();
+import { CREATE_FILE_CMD, README_PATH, REPO_PATH } from "../constants";
 
 export const DefaultOption = async () => {
   try {
@@ -29,11 +23,29 @@ export const DefaultOption = async () => {
   }
 };
 
-const getPackage = () => {
+const getPackage_V1 = () => {
   try {
     return require(process.cwd() + "/package.json");
   } catch (ex) {
     console.error("There is no package.json inside the directory.");
+  }
+};
+
+const getPackage_V2 = () => {
+  try {
+    return require(process.cwd() + "/apprag.config.js");
+  } catch (ex) {
+    console.error("There is no apprag.config.js inside the directory.");
+  }
+};
+
+const getPackage = () => {
+  try {
+    const basicInfo = getPackage_V1();
+    const appragInfo = getPackage_V2();
+    return { ...basicInfo, ...appragInfo };
+  } catch (ex) {
+    console.error("Error in getting configs for package information.");
   }
 };
 

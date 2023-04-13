@@ -2,7 +2,7 @@
 
 **Apprag - A Professional Project Readme Auto-Generator**
 
-<p>Version 1.3.0</p>
+<p>Version 1.3.1</p>
 <p>by m3yevn</p>
 
 <hr/>
@@ -34,7 +34,7 @@ N.A
 ## 📜 Scripts
 
 ```sh
-test : $ npm run test
+test : $ ts-node src/test.ts
 build : $ rm -rf dist && tsc
 build:win : $ rmdir /s dist && tsc
 publish : $ npm publish --access=public

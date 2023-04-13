@@ -5,7 +5,7 @@ export const spawnProcess = (
   args?: string[]
 ): Promise<string | undefined> => {
   return new Promise((resolve, reject) => {
-    const options = process.platform === "win32" ? { shell: true } : {};
+    const options = { shell: true };
     const child = spawn(command, args, options);
     //Returns success output
     child.stdout.on("data", (resultChunk) => {

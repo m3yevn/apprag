@@ -153,12 +153,7 @@ var SpawnService_1 = require("../services/SpawnService");
 var TemplateService_1 = require("../services/TemplateService");
 var fs_1 = require("fs");
 var ReadlineService_1 = require("../services/ReadlineService");
-var README_PATH = "/README.md";
-var CREATE_FILE_CMD = process.platform === "win32" ? "type nul > " : "touch";
-var REPO_PATH =
-  process.platform === "win32"
-    ? process.cwd().replace(/\\/g, "/")
-    : process.cwd();
+var constants_1 = require("../constants");
 exports.DefaultOption = function () {
   return __awaiter(void 0, void 0, void 0, function () {
     var template, replacements, filledTemplate, ex_1;
@@ -169,7 +164,9 @@ exports.DefaultOption = function () {
           return [
             4 /*yield*/,
             SpawnService_1.spawnProcess(
-              CREATE_FILE_CMD + REPO_PATH + README_PATH,
+              constants_1.CREATE_FILE_CMD +
+                constants_1.REPO_PATH +
+                constants_1.README_PATH,
               []
             ),
           ];
@@ -193,7 +190,7 @@ exports.DefaultOption = function () {
           return [
             4 /*yield*/,
             TemplateService_1.writeTemplate(
-              REPO_PATH + README_PATH,
+              constants_1.REPO_PATH + constants_1.README_PATH,
               filledTemplate
             ),
           ];
@@ -210,11 +207,27 @@ exports.DefaultOption = function () {
     });
   });
 };
-var getPackage = function () {
+var getPackage_V1 = function () {
   try {
     return require(process.cwd() + "/package.json");
   } catch (ex) {
     console.error("There is no package.json inside the directory.");
+  }
+};
+var getPackage_V2 = function () {
+  try {
+    return require(process.cwd() + "/apprag.config.js");
+  } catch (ex) {
+    console.error("There is no apprag.config.js inside the directory.");
+  }
+};
+var getPackage = function () {
+  try {
+    var basicInfo = getPackage_V1();
+    var appragInfo = getPackage_V2();
+    return __assign(__assign({}, basicInfo), appragInfo);
+  } catch (ex) {
+    console.error("Error in getting configs for package information.");
   }
 };
 var getReplacements = function () {
@@ -238,7 +251,7 @@ var getReplacements = function () {
               function (answer) {
                 packageInfo.name = answer;
                 TemplateService_1.writeTemplate(
-                  REPO_PATH + "/package.json",
+                  constants_1.REPO_PATH + "/package.json",
                   JSON.stringify(packageInfo, null, "\t")
                 );
               }
@@ -267,7 +280,7 @@ var getReplacements = function () {
             packageInfo.screenshots = [];
           }
           TemplateService_1.writeTemplate(
-            REPO_PATH + "/package.json",
+            constants_1.REPO_PATH + "/package.json",
             JSON.stringify(packageInfo, null, "\t")
           );
           return [
