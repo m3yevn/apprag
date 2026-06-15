@@ -1,17 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Main = void 0;
-var DefaultOption_1 = require("./options/DefaultOption");
-var GenerateConfig_1 = require("./options/GenerateConfig");
+exports.Main = Main;
+const DefaultOption_1 = require("./options/DefaultOption");
+const GenerateConfig_1 = require("./options/GenerateConfig");
 function Main() {
-    var options = process.argv[2];
+    const options = process.argv[2];
     switch (options) {
         case "--config":
-            GenerateConfig_1.GenerateConfig();
+            (0, GenerateConfig_1.GenerateConfig)();
             break;
         default:
-            DefaultOption_1.DefaultOption();
+            (0, DefaultOption_1.DefaultOption)();
             break;
     }
 }
-exports.Main = Main;

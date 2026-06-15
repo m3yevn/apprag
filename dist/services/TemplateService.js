@@ -4,24 +4,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.fillTemplate = exports.writeTemplate = exports.readTemplateFromFile = exports.readTemplateFromUrl = void 0;
-var handlebars_1 = __importDefault(require("handlebars"));
-var fs_1 = require("fs");
-var axios_1 = __importDefault(require("axios"));
-exports.readTemplateFromUrl = function (path) {
-    return new Promise(function (resolve, reject) {
+const handlebars_1 = __importDefault(require("handlebars"));
+const fs_1 = require("fs");
+const axios_1 = __importDefault(require("axios"));
+const readTemplateFromUrl = (path) => {
+    return new Promise((resolve, reject) => {
         axios_1.default
             .get(path)
-            .then(function (result) {
+            .then((result) => {
             resolve(result.data);
         })
-            .catch(function (err) {
+            .catch((err) => {
             reject(err);
         });
     });
 };
-exports.readTemplateFromFile = function (path) {
-    return new Promise(function (resolve, reject) {
-        fs_1.readFile(path, { encoding: "utf-8" }, function (error, result) {
+exports.readTemplateFromUrl = readTemplateFromUrl;
+const readTemplateFromFile = (path) => {
+    return new Promise((resolve, reject) => {
+        (0, fs_1.readFile)(path, { encoding: "utf-8" }, (error, result) => {
             if (error) {
                 return reject(error);
             }
@@ -29,9 +30,10 @@ exports.readTemplateFromFile = function (path) {
         });
     });
 };
-exports.writeTemplate = function (path, data) {
-    return new Promise(function (resolve, reject) {
-        fs_1.writeFile(path, data, function (err) {
+exports.readTemplateFromFile = readTemplateFromFile;
+const writeTemplate = (path, data) => {
+    return new Promise((resolve, reject) => {
+        (0, fs_1.writeFile)(path, data, (err) => {
             if (err) {
                 return reject(err);
             }
@@ -39,6 +41,8 @@ exports.writeTemplate = function (path, data) {
         });
     });
 };
-exports.fillTemplate = function (html, replacements) {
+exports.writeTemplate = writeTemplate;
+const fillTemplate = (html, replacements) => {
     return handlebars_1.default.compile(html)(replacements);
 };
+exports.fillTemplate = fillTemplate;
