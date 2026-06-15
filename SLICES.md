@@ -6,5 +6,5 @@
 | Vitest | ✅ |
 | Landing + `/docs` | ✅ |
 | CI + release | ✅ |
-| Vercel | ⏳ after push |
+| Vercel | ✅ [apprag.vercel.app](https://apprag.vercel.app) |
 | npm `apprag@2` | ⏳ tag v2.0.0 |

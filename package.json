@@ -4,8 +4,16 @@
   "description": "Apprag — professional README auto-generator from package.json",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "bin": { "apprag": "./bin/apprag" },
-  "files": ["dist", "bin", "templates", "README.md", "LICENSE"],
+  "bin": {
+    "apprag": "./bin/apprag"
+  },
+  "files": [
+    "dist",
+    "bin",
+    "templates",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "rimraf dist && tsc",
     "test": "vitest run",
@@ -16,10 +24,17 @@
     "url": "git+https://github.com/m3yevn/apprag.git"
   },
   "homepage": "https://apprag.vercel.app",
-  "keywords": ["readme", "readme-generator", "apprag", "documentation"],
+  "keywords": [
+    "readme",
+    "readme-generator",
+    "apprag",
+    "documentation"
+  ],
   "author": "m3yevn",
   "license": "MIT",
-  "engines": { "node": ">=18" },
+  "engines": {
+    "node": ">=18"
+  },
   "dependencies": {
     "axios": "^1.7.9",
     "handlebars": "^4.7.8"
@@ -28,6 +43,6 @@
     "@types/node": "^22.10.0",
     "rimraf": "^6.0.1",
     "typescript": "^5.7.2",
-    "vitest": "^2.1.8"
+    "vitest": "^4.1.9"
   }
 }
