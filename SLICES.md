@@ -7,4 +7,4 @@
 | Landing + `/docs` | ✅ |
 | CI + release | ✅ |
 | Vercel | ✅ [apprag.vercel.app](https://apprag.vercel.app) |
-| npm `apprag@2` | ⏳ tag v2.0.0 |
+| npm `apprag@2` | ✅ [apprag@2.0.0](https://www.npmjs.com/package/apprag) |
